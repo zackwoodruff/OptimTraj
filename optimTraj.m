@@ -158,6 +158,18 @@ function soln = optimTraj(problem)
 problem = inputValidation(problem);   %Check inputs
 problem = getDefaultOptions(problem); % Complete options struct
 
+disp('Overwriting default options for fmincon - Zack')
+problem.options.nlpOpt.Algorithm = 'sqp';
+problem.options.nlpOpt.ConstraintTolerance = 1e-5;
+problem.options.nlpOpt.OptimalityTolerance = 1e-2;
+problem.options.nlpOpt.StepTolerance = 1e-5;
+
+% Overwrite max function evaluations - Zack
+if isfield(problem.options,'MaxFunEvals')
+    disp(['Overwriting the default MaxFunEvals. Setting to: ' num2str(problem.options.MaxFunEvals)])
+    problem.options.nlpOpt.MaxFunEvals = problem.options.MaxFunEvals;
+end
+
 % Loop over the options struct to solve the problem
 nIter = length(problem.options);
 soln(nIter) = struct('grid',[],'interp',[],'info',[],'problem',[]); 
