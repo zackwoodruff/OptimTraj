@@ -75,6 +75,7 @@ end
 x = reshape(T(j,j,:),nx,1);
 
 if ~converged  %Then non-smooth problem. Recursively sub-divide interval.
+    %warning('Did not converge, problem must be nonsmooth, subdividing.') 
     time = linspace(tSpan(1), tSpan(2), nSubSegment+1);
     x = zeros(nx,1);
     err = zeros(nx,1);
