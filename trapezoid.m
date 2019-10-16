@@ -94,12 +94,34 @@ soln.interp.collCst = @(t)( ...
 absColErr = @(t)(abs(soln.interp.collCst(t)));
 nSegment = nGrid-1;
 nState = size(xSoln,1);
-quadTol = 1e-12;   %Compute quadrature to this tolerance  
+%quadTol = 1e-12;   %Compute quadrature to this tolerance
+%warning('Changed quadTol for rombergQuadrature function to 0.0001. -Zack')
+%quadTol = 0.001;   %Compute quadrature to this tolerance
+warning('Turned quadTol error checking off. -Zack')
+
 soln.info.error = zeros(nState,nSegment);
-for i=1:nSegment
-    soln.info.error(:,i) = rombergQuadrature(absColErr,tSoln([i,i+1]),quadTol);
-end
+%for i=1:nSegment
+%    soln.info.error(:,i) = rombergQuadrature(absColErr,tSoln([i,i+1]),quadTol);
+%end
 soln.info.maxError = max(max(soln.info.error));
+
+%%
+% figure(10);
+% tvec = linspace(0,1,50);
+% yvec= soln.interp.control(tvec);
+% plot(tvec,yvec)
+% 
+% figure(11);
+% yvec= soln.interp.state(tvec);
+% plot(tvec,yvec)
+% 
+% figure(12);
+% yvec= soln.interp.collCst(tvec);
+% plot(tvec,yvec)
+% 
+% figure(13);
+% yvec= absColErr(tvec);
+% plot(tvec,yvec)
 
 end
 
