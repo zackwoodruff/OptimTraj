@@ -96,6 +96,17 @@ tic;
 [tSoln,xSoln,uSoln] = unPackDecVar(zSoln,pack);
 nlpTime = toc;
 
+%%
+figure(1000); clf
+subplot(1,2,1)
+h=plot(tSoln,xSoln','.-');
+plotgoal(tSoln(end),xSoln(:,end)',h)
+subplot(1,2,2)
+plot(tSoln,uSoln','.-')
+
+disp(['initial cost: ' num2str(P.objective(P.x0))])
+disp(['final cost: ' num2str(P.objective(zSoln))])
+
 %%%% Store the results:
 
 soln.grid.time = tSoln;
