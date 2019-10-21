@@ -97,7 +97,7 @@ nState = size(xSoln,1);
 %quadTol = 1e-12;   %Compute quadrature to this tolerance
 %warning('Changed quadTol for rombergQuadrature function to 0.0001. -Zack')
 %quadTol = 0.001;   %Compute quadrature to this tolerance
-warning('Turned quadTol error checking off. -Zack')
+%warning('Turned quadTol error checking off. -Zack')
 
 soln.info.error = zeros(nState,nSegment);
 %for i=1:nSegment
