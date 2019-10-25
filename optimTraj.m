@@ -164,7 +164,7 @@ problem.options.nlpOpt.ConstraintTolerance = 1e-5;
 problem.options.nlpOpt.OptimalityTolerance = 1e-2;
 problem.options.nlpOpt.StepTolerance = 1e-5;
 
-problem.options.nlpOpt.Display='final-detailed';
+problem.options.nlpOpt.Display='iter-detailed'; %'final-detailed'
 
 % Overwrite max function evaluations - Zack
 if isfield(problem.options,'MaxFunEvals')
