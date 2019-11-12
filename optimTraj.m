@@ -159,11 +159,12 @@ problem = inputValidation(problem);   %Check inputs
 problem = getDefaultOptions(problem); % Complete options struct
 
 %disp('Overwriting default options for fmincon - Zack')
-problem.options.nlpOpt.Algorithm = 'sqp';
-problem.options.nlpOpt.ConstraintTolerance = 1e-5;
-problem.options.nlpOpt.OptimalityTolerance = 1e-2;
-problem.options.nlpOpt.StepTolerance = 1e-5;
-
+%problem.options.nlpOpt.Algorithm = 'sqp';
+problem.options.nlpOpt.Algorithm = 'interior-point';
+problem.options.nlpOpt.ConstraintTolerance = 1e-6;
+problem.options.nlpOpt.OptimalityTolerance = 1e-6;
+problem.options.nlpOpt.StepTolerance = 1e-6;
+problem.options.nlpOpt.MaxIter = 1000;
 problem.options.nlpOpt.Display='iter-detailed'; %'final-detailed'
 
 % Overwrite max function evaluations - Zack
