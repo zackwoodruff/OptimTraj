@@ -1,5 +1,6 @@
 function soln = trapezoid(problem)
 % soln = trapezoid(problem)
+% test text
 %
 % This function transcribes a trajectory optimization problem using the
 % trapezoid method for enforcing the dynamics. It can be found in chapter
