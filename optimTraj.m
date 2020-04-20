@@ -161,17 +161,36 @@ problem = getDefaultOptions(problem); % Complete options struct
 %disp('Overwriting default options for fmincon - Zack')
 problem.options.nlpOpt.Algorithm = 'sqp';
 %problem.options.nlpOpt.Algorithm = 'interior-point';
-problem.options.nlpOpt.ConstraintTolerance = 1e-6;
-problem.options.nlpOpt.OptimalityTolerance = 1e-6;
-problem.options.nlpOpt.StepTolerance = 1e-6;
 problem.options.nlpOpt.MaxIter = 1000;
 %problem.options.nlpOpt.Display='iter-detailed';
 problem.options.nlpOpt.Display='final-detailed'; 
+
 % Overwrite max function evaluations - Zack
 if isfield(problem.options,'MaxFunEvals')
     %disp(['Overwriting the default MaxFunEvals. Setting to: ' num2str(problem.options.MaxFunEvals)])
     problem.options.nlpOpt.MaxFunEvals = problem.options.MaxFunEvals;
 end
+
+if isfield(problem.options,'ConstraintTolerance')
+    problem.options.nlpOpt.ConstraintTolerance = problem.options.ConstraintTolerance; 
+else
+    problem.options.nlpOpt.ConstraintTolerance = 1e-6;
+end
+
+if isfield(problem.options,'OptimalityTolerance')
+    problem.options.nlpOpt.OptimalityTolerance = problem.options.OptimalityTolerance; 
+else
+    problem.options.nlpOpt.OptimalityTolerance = 1e-6;
+end
+
+if isfield(problem.options,'StepTolerance')
+    problem.options.nlpOpt.StepTolerance = problem.options.StepTolerance; 
+else
+    problem.options.nlpOpt.StepTolerance = 1e-6;
+end
+
+
+
 
 % Loop over the options struct to solve the problem
 nIter = length(problem.options);
